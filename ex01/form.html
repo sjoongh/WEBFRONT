@@ -1,61 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>멤버십 가입</title>
-    <link rel="stylesheet" href="./css.style.css" />
-    <style>
-        /* 속성 선택자 연습 */
-        * [type] {
-            /* type 속성이 있는 모든 태그 선택 */
-            background-color: beige;
-        }
+<html lang="ko">
+    <head>
+        <meta http-equiv="Content-Type"
+            content="text/html;charset=UTF-8" />
+        <title>멤버십 가입</title>
+        <link rel="stylesheet"
+            href="./css/style.css" />
+        <style>
+            /* 속성 선택자 연습 */
+            * [type] {
+                /* type 속성이 있는 모든 태그 선택 */
+                background-color: beige;
+            }
 
-        input[type=text] {
-            /* type 속성이 text인 input 태그 선택 */
-            background-color: lightgreen;
-        }
+            input[type=text] {
+                /* type 속성이 text인 input 태그 선택 */
+                background-color: lightgreen;
+            }
 
-        input[type=password] {
-            /* type 속성이 password인 input 태그 선택 */
-            background-color: lightblue;
-        }
-    </style>
-</head>
-<body>
-    <h1>멤버십 가입</h1>
-    <!-- name : HTML에서 폼식별
-    POST : 접속 방식
-    action=폼처리 서버주소 -->
-    <form name="registerForm"
-        method="POST"
-        action="/register.html">
-        <fieldset> <!-- 입력 양식의 그룹화 -->
+            input[type=password] {
+                /* type 속성이 password인 input 태그 선택 */
+                background-color: lightblue;
+            }
+
+            /* 상태 선택자 
+                : 입력폼의 상태에 따른 선택 */
+            input:enabled {
+                /* 입력 가능한 input 태그 선택 */
+                background-color: white;
+            }
+
+            input:disabled {
+                /* 입력 불가능한 input 태그 선택 */
+                background-color: grey;
+            }
+
+            input:focus {
+                /* 초점이 맞춰진 상태의 input 태그 선택 */
+                background-color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>멤버십 가입</h1>
+        <form name="registerForm"
+            method="POST"
+            action="/register.html">
+        <fieldset><!-- 입력 양식의 그룹화 -->
             <legend>회원가입</legend>
             <label for="userid">아이디</label>
             <!-- name 속성: 서버로 전송될 파라미터의 이름 -->
             <!-- id 속성: HTML에서 해당 입력 양식을 식별 -->
-            <input type="text"
+            <input type="text" 
                 name="userid" id="userid"
                 placeholder="아이디를 입력해 주세요" /><br/>
             <label for="password">비밀번호</label>
             <input type="password"
                 name="password" id="password"
-                placehorder="비밀번호를 입력해 주세요" /><br/>
-            <!-- 사용자 입력은 아니고, 폼 처리시 반드시 필요한 값 : 개발자가 세팅 -->
+                placeholder="비밀번호를 입력해 주세요" /><br/>
+            <label for="code">추천코드</label>
+            <input type="text" name="code" id="code"
+                disabled /><br />
+            <!-- 사용자 입력은 아니고,
+                폼 처리시 반드시 필요한 값: 개발자 세팅 -->
             <input type="hidden"
                 name="secret_code" value="secret" />
             <label for="gender">성별</label>
             <!-- 같은 name을 가진 radio 중 한개만 전송 -->
-            <input type="radio"
+            <input type="radio" 
                 name="gender" value="F" checked />여성
             <input type="radio"
-                name="gender" value="M" />남성<br/>
+                name="gender" value="M" />남성<br />
             <label for="favorite">선호 음료</label>
             <!-- 같은 name을 가진 checkbox를 중복 전송
-                서버로는 문자열의 배열 파라미터 전송됨 -->
+                서버로는 문자열의 배열 파라미터 전송 -->
             <input type="checkbox"
                 name="favorite" value="americano" />아메리카노
             <input type="checkbox"
@@ -63,10 +81,10 @@
             <input type="checkbox"
                 name="favorite" value="ade" />에이드
             <input type="checkbox"
-                name="favortie" value="tea" />녹차/홍차
+                name="favorite" value="tea" />녹차/홍차
             <br />
             <!-- Dropdown -->
-            <label for="telecom"></label>
+            <label for="telecom">통신사</label>
             <select name="telecom">
                 <!-- 실제 데이터는 option 태그로 설정 -->
                 <option value="S">SKT</option>
@@ -79,7 +97,7 @@
             <!-- 전송: submit -->
             <input type="submit" value="멤버십 가입" />
         </fieldset>
-    </form>
-    <p><a href="index.html">Bit Lounge</a></p>
-</body>
+        </form>
+        <p><a href="index.html">Bit Lounge</a></p>
+    </body>
 </html>
