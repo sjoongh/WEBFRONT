@@ -1,0 +1,30 @@
+@charset "UTF-8";
+/* 외부 css를 불러 들인다 */
+@import "main.css";
+
+h1 {
+    color: red;
+    background-color: greenyellow;
+}
+
+/* 가상 선택자: 반응 선택자 */
+/* :link 상태와 :visited 상태 -> A Tag Only */
+a:link {
+    /* 아직 미방문인 링크의 상태 */
+    color: cyan;
+}
+
+a:visited {
+    /* 이미 방문한 링크의 상태 */
+    color: blue;
+}
+
+a:hover {
+    /* 마우스가 올라왔을 때의 상태 */
+    color: black;
+}
+
+a:active {
+    /* 마우스가 클릭된 상태 */
+    color: red;
+}

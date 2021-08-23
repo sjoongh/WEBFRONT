@@ -1,86 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <!-- IE를 최신버전으로 설정, 왜 IE=edge로 고정인가? chrome or 파이어폭스는?? -->
-  <meta http-equiv="Content-Type" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu</title>
-</head>
-<body>
-  <header>
-    <h1>건강음료</h1>
-  </header>
+<html lang="ko">
+  <head>
+    <meta http-equiv="Content-Type"
+        content="text/html;charset=UTF-8">
+    <title>Bit Lounge 건강음료</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <style>
+      /* id 셀렉터: #아이디 */
+      #green {  /* id가 green인 요소 */
+        color: green;
+      }
+
+      #blue {
+        color: blue;
+      }
+
+      #purple {
+        color: purple;
+      }
+
+      #red {
+        color: red;
+      }
+
+      /* class 셀렉터:
+        .클래스명 */
+      .beverage.green {
+        background-color: rgba(0, 255, 0, 0.1);
+      }
+
+      .beverage.blue {
+        background-color: rgba(0, 0, 255, 0.1);
+      }
+
+      .beverage.purple {
+        background-color: rgba(128, 0, 128, 0.1);
+      }
+
+      .beverage.red {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+
+      /* 자식 선택자 vs 후손 선택자 
+        자식 선택자 > : 직계 후손만 선택
+        후손 선택자 (공백) : 직계 포함한 모든 자손들
+        */
+      .beverage p {
+        /* beverage 클래스의 후손 p 태그 선택 */
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>건강 음료</h1>
+    </header>
     <!-- 메뉴 -->
-  <nav>
-    <ul> <!-- 순서가 없는 리스트 -->
-      <li><a href="#green">Green</a></li>
-      <li><a href="#lightblue">lightblue</a></li>
-      <li><a href="#blue">blue</a></li>
-      <li><a href="#red">red</a></li>
-    </ul>
-  </nav>
-  <!-- 실제 컨텐츠 -->
-  <article>
-    <section id="green">
-    <div>
-        <h2>Green Tea Cooler</h2>
-        <img src="images/green.jpg"
-        alt="Green Tea Cooler"
-        title="Green Tea Cooler" />
-    <p>
-      Chock full of vitamins and minerals, this elixir combines the 
-      healthful benefits of green tea with a twist of 
-      chamomile blossoms and ginger root.
-    </p>
-  </div>
-</section>
+    <nav>
+      <ul class="menu"><!-- 순서가 없는 리스트-->
+        <li><a href="#green">Green</a></li>
+        <li><a href="#blue">Blue</a></li>
+        <li><a href="#purple">Purple</a></li>
+        <li><a href="#red">Red</a></li>
+      </ul>
+    </nav>
 
-  <section  id="lightblue">
-    <div>
-      <h2>Green Tea Cooler</h2>
-      <img src="images/lightblue.jpg"
-      alt="Raspberry Ice Concentration"
-      title="Raspberry Ice Concentration" />
+    <!-- 실질 컨텐츠 -->
+    <article>
+      <div class="seller">
+        <img src="./images/Penguins.jpg" alt="펭귄" />
+      </div>
+      <section id="green" class="green beverage">
+        <div>
+          <h2>Green Tea Cooler</h2>
+          <img src="images/green.jpg" 
+            alt="Green Tea Cooler"
+            title="Green Tea Cooler" />
+          <p>
+      Chock full of vitamins and minerals, this elixir combines the healthful benefits of green tea with a twist of chamomile blossoms and ginger root.
+          </p>
+        </div>
+      </section>
+
+      <section id="blue" class="blue beverage">
+        <div>
+          <h2>Raspberry Ice Concentration</h2>
+          <img src="images/lightblue.jpg"
+            alt="Raspberry Ice Concentration"
+            title="Raspberry Ice Concentration" />
+          <p>
+      Combining raspberry juice with lemon grass, citrus peel and rosehips, this icy drink will make your mind feel clear and crisp.
+          </p>
+        </div>
+      </section>
+
+      <section id="purple" class="purple beverage">
+
+        <div>
+          <h2>Blueberry Bliss Elixir</h2>
+          <img src="images/blue.jpg" 
+            alt="Blueberry Bliss Elixir"
+            title="Blueberry Bliss Elixir" />
+          <p>
+            Blueberries and cherry essence mixed into a base of elderflower herb tea will put you in a relaxed state of bliss in no time.
+          </p>
+        </div>
+      </section>
+
+      <section id="red" class="red beverage">
+        <div>
+          <h2>Cranberry Antioxidant Blast</h2>
+          <img src="images/red.jpg"
+            alt="Cranberry Antioxidant Blast"
+            title="Cranberry Antioxidant Blast" />
+          <p>
+      Wake up to the flavors of cranberry and hibiscus in this vitamin C rich elixir.
+          </p>
+        </div>
+      </section>
+    </article>
+
+    <nav>
       <p>
-        Combining raspberry juice with lemon grass, citrus peel and 
-        rosehips, this icy drink will make your mind feel clear 
-        and crisp.
+        <a href="index.html">메인으로 돌아가기</a>
       </p>
-  </div>
-</section>
+    </nav>
 
-  <section id="blue">
-    <div>
-      <h3>Blueberry Bliss Elixir</h3>
-      <img src="images/blue.jpg" />
-      <p>Blueberries and cherry essence mixed into a base of elderflower
-        herb tea will put you in a relaxed state of bliss in no time.
-      </p>
-    </div>
-  </section>
-
-  <section id="red">
-    <div>
-      <h4>Cranberry Antioxidant Blast</h4>
-      <img src="images/red.jpg" />
-      <p>Wake up to the flavors of cranberry and hibiscus in this vitamin C 
-        rich elixir.
-      </p>
-    </div>
-  </section>
-</article>
-<!-- nav같이 의미를 담은 태그를 담을 경우 검색의 중요도를 낮춤 -->
-<nav>
-  <p>
-    <a href="index.html">메인으로 돌아가기</a>
-  </p>
-</nav>
-
-<!-- 문서 정보 알려줌 -->
-<footer>
-  &copy; Bit Lounge, 2021
-</footer>
-
-</body>
-</html>
+    <footer>
+      &copy; Bit Lounge, 2021
+    </footer>
+  </body>
+</html>  
