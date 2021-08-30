@@ -68,3 +68,20 @@ String.prototype.sayHello = function() {
     return "Hello, " + this;
 }
 console.log("둘리".sayHello());
+
+console.log("============ This Binding");
+
+const testFunc = function(loaction) {
+    console.log(`나는 ${location}에 사는 ${this.name} 입니다.`);
+    console.log("this는 global? ", this === global);
+}
+
+testFunc("서울");
+
+const obj = { name: '홍길동' } // 객체 생성
+testFunc.call(obj, "서울");     // 함수 내부의 this를 obj와 연결
+testFunc.apply(obj, ["서울"])   // 함수 내부의 this를 obj와 연결, 인자를 배열로 전달
+
+const boundTestFunc = testFunc.bind(obj);
+// bind 메서드는 함수를 호출하지는 않고 this가 새 객체로 연결된 새 함수를 반환
+boundTestFunc("서울");
