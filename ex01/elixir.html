@@ -8,37 +8,46 @@
     <style>
       /* id 셀렉터: #아이디 */
       #green {  /* id가 green인 요소 */
-        color: green;
+        color: green; /* 키워드 */
+        color: #008000; /* 실제 값: 16진수 */
       }
 
       #blue {
         color: blue;
+        color: rgb(0, 0, 255);  /* 실제 값: rgb 함수 */
       }
 
       #purple {
         color: purple;
+        color: #800080;
       }
 
       #red {
         color: red;
+        color: rgb(255, 0, 0);
       }
 
       /* class 셀렉터:
         .클래스명 */
       .beverage.green {
+        /* alpha: 투명도 0.0(투명) ~ 1.0(불투명) */
         background-color: rgba(0, 255, 0, 0.1);
+        background-color: #00FF0020;
       }
 
       .beverage.blue {
         background-color: rgba(0, 0, 255, 0.1);
+        background-color: #0000FF20;
       }
 
       .beverage.purple {
         background-color: rgba(128, 0, 128, 0.1);
+        background-color: #80008020;
       }
 
       .beverage.red {
         background-color: rgba(255, 0, 0, 0.1);
+        background-color: #FF000020;
       }
 
       /* 자식 선택자 vs 후손 선택자 
@@ -47,12 +56,56 @@
         */
       .beverage p {
         /* beverage 클래스의 후손 p 태그 선택 */
-        font-weight: bold;
+        /* font-weight 속성: 글꼴의 두께
+            normal, lighter, bold, bolder */
+        font-weight: lighter;
+        /* font-size 속성: 글꼴의 크기 
+            기본 사이즈는 16px;
+            절대 크기: px,
+            상대 크기: em(배율), %(퍼센트) */
+        font-size: 1.1em; /* 110% 와 동일 */
+      }
+
+      .beverage {
+        /* padding: 컨텐츠 내부 영역 */
+        /* 값이 1개: 위, 오른쪽, 아래, 왼쪽에 공백 */
+        padding: 10px;
+        /* border : 테두리를 결정하는 속성 */
+        border-width: 3px;  /* 테두리 두께 */
+        border-style: solid; /* 테두리 스타일 */
+        border-color: grey; /* 테두리 색상 */
+
+        /* 축약형: border-width border-style border-color */
+        border: 3px dashed gray;
+
+        margin-bottom: 10px;
+      }
+
+      .seller img {
+        /* border-radius : 테두리를 둥글게 표현 */
+        border-radius: 20px; /* 값이 1개: 네방향 같은 둥글기 */
+        border-top-right-radius: 30px;
+        border-radius: 10px 20px 30px 40px;
+        /* 값이 네개: 위-왼쪽 위-오른쪽 아래-오른쪽 아래-왼쪽 */
+
+        border-radius: 50%;
+      }
+
+      .beverage h2 {
+        font-size: 1.5em;
+        /* 1.5em = 150% = 24px */
+        /* 특정 영역에 공백 추가 : 접미사 */
+        margin-bottom: 20px;
+      }
+
+      .menu {
+        /* 값이 2개: 위-아래 오른쪽-왼쪽 */
+        margin: 10px 0;
       }
 
       /* 구조 선택자 */
       .menu > li:first-child {
-        /* .menu 클래스의 자식 li중에서 첫 번째 자식 */
+        /* .menu 클래스의 자식 li 중에서 첫 번째 자식 */
         background-color: rgba(0, 255, 0, 0.5);
       }
 
@@ -60,12 +113,59 @@
         background-color: rgba(0, 0, 255, 0.5);
       }
 
-      .menu > li:nth-last-child(2) {
+      .menu > li:nth-child(3) {
         background-color: rgba(128, 0, 128, 0.5);
       }
 
       .menu > li:last-child {
+        /* .menu 클래스의 자식 li 중에서 마지막 자식 */
         background-color: rgba(255, 0, 0, 0.5);
+      }
+
+      .feature {
+        /* class=feature */
+        /* text-decoration 속성: 줄로 꾸미기 */
+        text-decoration: underline;
+      }
+
+      .seller {
+        /* 공간 점유 방식
+          none : 공간 점유 하지 않음
+          block : 공간 점유 방식을 block으로
+          inline : 공간 점유 방식을 inline으로 표시 */
+        /* display: none; */
+        /*  visibility 속성 
+          visible: 표시
+          hidden : 표시하지 않음(공간은 점유)*/
+        /* visibility: hidden; */
+      }
+
+       /* background: 배경을 설정하는 속성  */
+      body {
+        /* background-image: url("./images/Landscape.jpg");
+        background-repeat: no-repeat;
+          fixed로 배경화면 고정시킴 
+        background-attachment: fixed;
+        background-position: bottom;
+        background-size: 100%; */
+      /* 축약형: 배경화면 속성을 일괄 설정 */
+      /* background: url("./images/Landscape.jpg") 
+          bottom / 100% no-repeat fixed lightgray; */
+      /* -image -position / -size -repeat -attachment -color */
+      }
+
+      /* float 속성으로 메뉴 만들기 */
+      .menu > li {
+        float: left;
+        width: 80px;
+        height: 30px;
+        text-align: center;
+        padding-top: 10px;
+        list-style-type: none;
+      }
+
+      .beverage img {
+        margin-right: 10px;
       }
     </style>
   </head>
@@ -95,7 +195,7 @@
             alt="Green Tea Cooler"
             title="Green Tea Cooler" />
           <p>
-      Chock full of vitamins and minerals, this elixir combines the healthful benefits of green tea with a twist of chamomile blossoms and ginger root.
+      Chock full of <span class="feature">vitamins and minerals</span>, this elixir combines the healthful benefits of green tea with a twist of chamomile blossoms and ginger root.
           </p>
         </div>
       </section>
