@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iPhones</title>
+    <style>
+        #product-info img.selected {
+            width: 225px;
+            height: 265px;
+            float: left;
+            border: 1px solid lightslategrey;
+            margin: 5px;
+        }
+
+        #product-list li {
+            list-style-type: none;
+            border: 1px solid lightslategrey;
+            margin: 5px;
+            float: left;
+        }
+
+        #product-list li img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="product-info">
+        <!-- 태그에 이벤트 리스너를 붙이는 방법: 
+            Inline JavaScript: 추천하지 않음 -->
+        <img id="main-image" 
+            src="images/iphone-xs.jpeg" 
+            class="selected" 
+            onclick="alert(this.title)"
+            title="iPhones XS">
+        <h2>iPhone Xs</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.</p>
+        <h3>Products</h3>
+        <ul id="product-list">
+            <li><img class="sub-image" 
+                src="./images/iphone-xs.jpeg" 
+                title="iPhone XS"
+                data-color="red"></li>
+            <li><img 
+                class="sub-image" 
+                src="./images/iphone-xr.jpeg" 
+                title="iPhone XR"
+                data-color="green"></li>
+            <li><img 
+                class="sub-image" 
+                src="./images/iphone8.jpeg" 
+                title="iPhone 8"
+                data-color="blue"></li>
+            <li><img 
+                class="sub-image" 
+                src="./images/ipad-mini.jpeg" 
+                title="iPad Mini"
+                data-color="purple"></li>
+        </ul>
+        <input type="text" id="keyword" /><button id="btn-search">검색</button>
+    </div>
+</body>
+<script>
+    function testAttributes() {
+        //  main-image id속성을 가진 요소를 찾아와서
+        //  속성 확인
+        let obj = document.getElementById("main-image");
+        console.log("#main-image:", obj);
+        //  가지고 있는 모든 속성의 확인
+        console.log(obj.getAttributeNames());
+        for (let key of obj.getAttributeNames()) {
+            console.log("attribute:", key);
+        }
+        //  title 속성 출력
+        console.log("title:", obj.getAttribute("title"));
+        //  title 속성의 변경
+        obj.setAttribute("title", 
+                        "사진:" + obj.getAttribute("title"));
+        console.log("title:", obj.getAttribute("title"));
+
+        //  하단의 Products 이미지들의 title 속성도 변경해 봅시다.
+        let subs = 
+            document.getElementsByClassName("sub-image");
+        console.log(".sub-image:", subs);
+        //  HTMLCollection : 직접 접근은 불가, loop로 
+        //      개별 요소에 접근해야 한다.
+        for (let i = 0; i < subs.length; i++) {
+            //  속성 변경
+            subs[i].setAttribute("title", 
+                    "사진:" + subs[i].getAttribute("title"));
+        }
+    }
+    // testAttributes();
+
+    //  이벤트 붙이기 두번째 방식
+    document.getElementById("main-image")
+        .onclick = function(event) {
+        console.log(event); //  이벤트 객체
+        console.log("이벤트 발생 객체:", event.target);
+        //  이벤트 발생 객체: event.target
+        alert(event.target.title);
+    }
+
+    //  이벤트 리스너 부착: 가장 추천하는 방식
+    window.addEventListener("load", function(event) {
+        //  load 이벤트 -> 페이지 초기화를 담당
+        //  키보드 이벤트
+        document.getElementById("keyword")
+            // .onkeypress = function(event) {
+            .onkeyup = function(event) {
+            console.log(event); //  이벤트 정보
+            console.log(event.target);  //  이벤트 발생시킨 객체
+            console.log("눌러진 키:", event.keyCode);
+
+            let btn = document.querySelector("#btn-search");
+            btn.innerText = event.target.value + " :검색";
+        }
+
+        //  class가 sub-image인 모든 요소들 검색
+        let products = 
+            document.getElementsByClassName("sub-image");
+        console.log(products);
+        for (let i = 0; i < products.length; i++) {
+            //  개별 상품들 요소 확인
+            let product = products[i];
+            console.log(product);
+
+            //  이벤트 리스너 부착
+            product.addEventListener("click", function(event) {
+                //  이벤트 발생 객체 검색
+                let obj = event.target;
+                let mainImage = document.getElementById("main-image");
+                // mainImage.setAttribute("src", obj.getAttribute("src"));
+                mainImage['src'] = obj['src'];
+                // mainImage.setAttribute("title", obj.getAttribute("title"));
+                mainImage['title'] = obj['title'];
+
+                let title = document.querySelector("#product-info h2");
+                title.innerText = obj.getAttribute("title");
+                //  스타일 속성 사용
+                console.log(obj.getAttribute("data-color"));
+                title.style.backgroundColor = obj.getAttribute("data-color");
+            })
+        }
+    });
+</script>
